@@ -1,0 +1,30 @@
+{
+  "name": "physicsclz-backend",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Backend for Ushan Kolamunna Physics",
+  "scripts": {
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi"
+  },
+  "devDependencies": {},
+  "dependencies": {
+    "@strapi/strapi": "4.11.7",
+    "@strapi/plugin-users-permissions": "4.11.7",
+    "@strapi/plugin-i18n": "4.11.7",
+    "better-sqlite3": "8.0.1"
+  },
+  "author": {
+    "name": "Pinsara Aasith Mallawarachchi"
+  },
+  "strapi": {
+    "uuid": "3899ec7b-e1aa-4292-ad02-e2dd080b4799"
+  },
+  "engines": {
+    "node": ">=14.19.1 <=18.x.x",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT"
+}
