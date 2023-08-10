@@ -285,7 +285,7 @@
             "name": "Name",
             "alYear": "Al Year", 
             "type": {
-                "name": "Theory/Revision",
+                "name": "Class Type",
                 "types": {
                     "theory": "Theory",
                     "revision": "Revision",

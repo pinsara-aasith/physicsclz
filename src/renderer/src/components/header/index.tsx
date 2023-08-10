@@ -1,6 +1,7 @@
 import React from "react";
 import {
     useGetLocale,
+    useResource,
     useSetLocale,
 } from "@refinedev/core";
 import { ClusterOutlined, DownOutlined } from "@ant-design/icons";
@@ -32,6 +33,8 @@ const { useToken } = theme;
 const { useBreakpoint } = Grid;
 
 import './header.css'
+import { useQuery } from "@renderer/src/hooks";
+import { useLocation } from "react-router-dom";
 
 export const Header: React.FC = () => {
     const { token } = useToken();
@@ -72,6 +75,11 @@ export const Header: React.FC = () => {
 
     let { selectedClassId, setSelectedClassId } = useClassSearchProvider();
 
+    const { resources } = useResource()
+
+    const location = useLocation();
+    const hideSelect = !resources.filter(r => r.name == 'dashboard' || r.name == 'students' || r.name == 'classes').find(r => location.pathname.includes(r.name));
+
     return (
         <AntdHeader
             style={{
@@ -95,7 +103,8 @@ export const Header: React.FC = () => {
                         style={{
                             width: "100%",
                             maxWidth: "250px",
-                            fontWeight: 'bold'
+                            fontWeight: 'bold',
+                            ...hideSelect ? { display: 'none' } : {}
                         }}
                         placeholder="Select a class to filter data"
                         value={selectedClassId as any}
