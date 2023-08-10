@@ -1,30 +1,30 @@
 import { Dayjs } from "dayjs";
 
-export interface IOrderChart {
-    count: number;
-    status:
-        | "waiting"
-        | "ready"
-        | "on the way"
-        | "delivered"
-        | "could not be delivered";
-}
+// export interface IOrderChart {
+//     count: number;
+//     status:
+//         | "waiting"
+//         | "ready"
+//         | "on the way"
+//         | "delivered"
+//         | "could not be delivered";
+// }
 
-export interface IOrderTotalCount {
-    total: number;
-    totalDelivered: number;
-}
+// export interface IOrderTotalCount {
+//     total: number;
+//     totalDelivered: number;
+// }
 
-export interface ISalesChart {
-    date: string;
-    title: "Order Count" | "Order Amount";
-    value: number;
-}
+// export interface ISalesChart {
+//     date: string;
+//     title: "Order Count" | "Order Amount";
+//     value: number;
+// }
 
-export interface IOrderStatus {
-    id: number;
-    text: "Pending" | "Ready" | "On The Way" | "Delivered" | "Cancelled";
-}
+// export interface IOrderStatus {
+//     id: number;
+//     text: "Pending" | "Ready" | "On The Way" | "Delivered" | "Cancelled";
+// }
 
 export interface IUser {
     id: number;
@@ -65,69 +65,6 @@ export interface IEvent {
     status: string;
 }
 
-export interface IStore {
-    id: number;
-    title: string;
-    isActive: boolean;
-    createdAt: string;
-    address: IAddress;
-    products: IProduct[];
-}
-
-export interface ICourier {
-    id: number;
-    name: string;
-    surname: string;
-    email: string;
-    gender: string;
-    gsm: string;
-    createdAt: string;
-    accountNumber: string;
-    licensePlate: string;
-    address: string;
-    avatar: IFile[];
-    store: IStore;
-}
-export interface IOrder {
-    id: number;
-    user: IUser;
-    createdAt: string;
-    products: IProduct[];
-    status: IOrderStatus;
-    adress: IAddress;
-    store: IStore;
-    courier: ICourier;
-    events: IEvent[];
-    orderNumber: number;
-    amount: number;
-}
-
-export interface IProduct {
-    id: number;
-    name: string;
-    isActive: boolean;
-    description: string;
-    images: IFile[];
-    createdAt: string;
-    price: number;
-    category: ICategory;
-    stock: number;
-}
-
-export interface ICategory {
-    id: number;
-    title: string;
-    isActive: boolean;
-}
-
-export interface IOrderFilterVariables {
-    q?: string;
-    store?: string;
-    user?: string;
-    createdAt?: [Dayjs, Dayjs];
-    status?: string;
-}
-
 export interface IUserFilterVariables {
     q: string;
     status: boolean;
@@ -136,23 +73,71 @@ export interface IUserFilterVariables {
     isActive: boolean;
 }
 
-export interface ICourier {
+
+
+export interface IStudent {
     id: number;
+    barcodeNo: number;
     name: string;
-    surname: string;
+    school: string;
     gender: string;
-    gsm: string;
+    description: string;
+    profilePicture: IFile[];
     createdAt: string;
-    isActive: boolean;
-    avatar: IFile[];
 }
 
-export interface IReview {
+export interface IStudentFilterVariables {
+    q: string;
     id: number;
-    order: IOrder;
-    user: IUser;
-    star: number;
-    createDate: string;
-    status: "pending" | "approved" | "rejected";
-    comment: string[];
+    barcodeNo: number;
+    createdAt: [Dayjs, Dayjs];
+    gender: string;
+    name: string;
+    school: string;
+    gender: string;
+}
+
+export interface IPaper {
+    id: number;
+    name: string;
+    date: string;
+    class: IClass;
+    mcqCount: number;
+    structuredEssayCount: number;
+    essayCount: number;
+    totalMarksForMCQ: number;
+    totalMarksForStructuredEssay: number;
+    totalMarksForEssay: number;
+    isFullPaper: boolean;
+    description: string;
+}
+
+
+export interface IPaperFilterVariables  {
+    name: string;
+    date: string;
+    classId: string;
+    isFullPaper: boolean;
+    description: string;
+}
+
+export interface IMark {
+    student: IStudent;
+    paper: IPaper;
+    mcq: number;
+    structuredEssay: number;
+    essay: number;
+    total: number;
+}
+
+export interface IMarkFilterVariables  {
+    studentId: number;
+    paperId: number;
+}
+
+export interface IClass {
+    id: any;
+    name: string,
+    alYear: number;
+    type: string;
 }

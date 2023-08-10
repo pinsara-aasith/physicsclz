@@ -1,1 +1,1 @@
-export * from "./useOrderCustomKbarActions";
+export * from "./useQuery";

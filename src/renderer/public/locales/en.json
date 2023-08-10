@@ -1,63 +1,5 @@
 {
     "pages": {
-        "login": {
-            "title": "Sign in to your account",
-            "signin": "Sign in",
-            "signup": "Sign up",
-            "divider": "or",
-            "fields": {
-                "email": "Email",
-                "password": "Password"
-            },
-            "errors": {
-                "validEmail": "Invalid email address"
-            },
-            "buttons": {
-                "submit": "Login",
-                "forgotPassword": "Forgot password?",
-                "noAccount": "Don’t have an account?",
-                "rememberMe": "Remember me"
-            }
-        },
-        "forgotPassword": {
-            "title": "Forgot your password?",
-            "fields": {
-                "email": "Email"
-            },
-            "errors": {
-                "validEmail": "Invalid email address"
-            },
-            "buttons": {
-                "submit": "Send reset instructions"
-            }
-        },
-        "register": {
-            "title": "Sign up for your account",
-            "fields": {
-                "email": "Email",
-                "password": "Password"
-            },
-            "errors": {
-                "validEmail": "Invalid email address"
-            },
-            "buttons": {
-                "submit": "Register",
-                "haveAccount": "Have an account?"
-            }
-        },
-        "updatePassword": {
-            "title": "Update password",
-            "fields": {
-                "password": "New Password",
-                "confirmPassword": "Confirm new password"
-            },
-            "errors": {
-                "confirmPasswordNotMatch": "Passwords do not match"
-            },
-            "buttons": {
-                "submit": "Update"
-            }
-        },
         "error": {
             "info": "You may have forgotten to add the {{action}} component to {{resource}} resource.",
             "404": "Sorry, the page you visited does not exist.",
@@ -103,7 +45,6 @@
         "actions": "Actions"
     },
     "search": {
-        "placeholder": "Search by Store ID, E-mail, Keyword",
         "more": "more"
     },
     "status": {
@@ -115,7 +56,7 @@
         "success": "Successful",
         "error": "Error (status code: {{statusCode}})",
         "undoable": "You have {{seconds}} seconds to undo",
-        "createSuccess": "Successfully created {{resource}}",
+        "createSuccess": "The {{resource}} was added successfully",
         "createError": "There was an error creating {{resource}} (status code: {{statusCode}})",
         "deleteSuccess": "Successfully deleted {{resource}}",
         "deleteError": "Error when deleting {{resource}} (status code: {{statusCode}})",
@@ -123,75 +64,19 @@
         "editError": "Error when editing {{resource}} (status code: {{statusCode}})",
         "importProgress": "Importing: {{processed}}/{{total}}"
     },
-    "categories": {
-        "categories": "Categories",
-        "titles": {
-            "list": "Categories"
-        },
-        "fields": {
-            "id": "ID",
-            "title": "Title",
-            "isActive": "Active"
-        }
-    },
-    "couriers": {
-        "couriers": "Couriers",
-        "titles": {
-            "create": "Create Courier",
-            "list": "Couriers",
-            "edit": "Edit Courier"
-        },
-        "fields": {
-            "id": "ID",
-            "avatar": {
-                "label": "Avatar",
-                "description": "Click or drag avatar image to this area to upload."
-            },
-            "name": "Name",
-            "surname": "Surname",
-            "gender": {
-                "label": "Gender",
-                "male": "Male",
-                "female": "Female"
-            },
-            "gsm": "Phone",
-            "email": "E-Mail",
-            "address": "Address",
-            "createdAt": "CreatedAt",
-            "isActive": "Is Active",
-            "images": {
-                "label": "Images",
-                "description": "Add user picture",
-                "validation": "must be 480x480 px"
-            },
-            "store": "Store",
-            "vehicle": "Vehicle",
-            "accountNumber": "Account Number"
-        },
-        "steps": {
-            "content": "Content",
-            "relations": "Relations"
-        }
-    },
     "dashboard": {
         "title": "Dashboard",
-        "deliveryMap": {
-            "title": "Delivery Map"
+        "managePapers": {
+            "title": "Manage Papers"
         },
-        "orders": {
-            "title": "Orders"
+        "manageStudents": {
+            "title": "Manage Students"
         },
-        "totalSales": {
-            "title": "Total Sales"
+        "manageMarks": {
+            "title": "View Marks"
         },
-        "dailyRevenue": {
-            "title": "Daily Revenue"
-        },
-        "dailyOrders": {
-            "title": "Daily Orders"
-        },
-        "newCustomers": {
-            "title": "New Customers"
+        "analysis": {
+            "title": "Progress Report"
         },
         "timeline": {
             "title": "Timeline",
@@ -210,169 +95,47 @@
             "title": "Daily Trending Menus"
         }
     },
-    "enum": {
-        "orderStatuses": {
-            "Pending": "Pending",
-            "Ready": "Ready",
-            "On The Way": "On the way",
-            "Delivered": "Delivered",
-            "Cancelled": "Cancelled"
-        }
-    },
-    "orders": {
-        "orders": "Orders",
+    "students": {
+        "students": "Students",
         "titles": {
-            "list": "Orders",
-            "show": "Show Order"
-        },
-        "fields": {
-            "orderNumber": "Order Number",
-            "orderID": "Order ID",
-            "status": "Status",
-            "store": "Store",
-            "user": "User",
-            "products": "Products",
-            "createdAt": "CreatedAt",
-            "amount": "Amount",
-            "itemsAmount": "{{amount}} items"
-        },
-        "filter": {
-            "title": "Filters",
-            "search": {
-                "label": "Search",
-                "placeholder": "Order Number, User, etc."
-            },
-            "status": {
-                "label": "Status",
-                "placeholder": "Order Status"
-            },
-            "store": {
-                "label": "Store",
-                "placeholder": "Search Stores"
-            },
-            "user": {
-                "label": "User",
-                "placeholder": "Search Users"
-            },
-            "createdAt": {
-                "label": "Created At"
-            },
-            "submit": "Filter"
-        },
-        "courier": {
-            "deliveryTime": "Delivery Time",
-            "phone": "Phone"
-        },
-        "deliverables": {
-            "deliverables": "Deliverables",
-            "fields": {
-                "items": "Items",
-                "quantity": "Quantity",
-                "price": "Price",
-                "total": "Total"
-            },
-            "mainTotal": "MAIN TOTAL"
-        }
-    },
-    "products": {
-        "products": "Products",
-        "titles": {
-            "list": "Products",
-            "create": "Create Product",
-            "edit": "Edit Product"
+            "create": "Create New Student",
+            "edit": "Edit Student",
+            "list": "Students",
+            "show": "Show Student"
         },
         "fields": {
             "id": "ID",
-            "name": "Name",
+            "profilePicture": {
+                "label": "Profile Picture",
+                "description": "Click or drag image to this area to upload."
+            },
+            "name": "Full Name",
+            "school": "School",
             "description": "Description",
-            "isActive": "Active",
-            "price": "Price",
-            "category": "Category",
-            "images": {
-                "label": "Images",
-                "description": "Add product picture",
-                "validation": "must be 1080x1080 px"
-            },
-            "createdAt": "CreatedAt"
-        }
-    },
-    "reviews": {
-        "reviews": "Reviews",
-        "titles": {
-            "list": "Reviews"
-        },
-        "fields": {
-            "user": "User",
-            "orderId": "Order ID",
-            "review": "Review",
-            "rating": "Rating"
-        }
-    },
-    "stores": {
-        "stores": "Stores",
-        "titles": {
-            "create": "Create Store",
-            "edit": "Edit Store",
-            "list": "Stores",
-            "show": "Show Store"
-        },
-        "fields": {
-            "id": "Store ID",
-            "title": "Title",
-            "isActive": "Active",
-            "createdAt": "CreatedAt",
-            "address": "Address",
-            "email": "Email",
-            "gsm": "Phone"
-        },
-        "buttons": {
-            "editProducts": "Edit Products",
-            "addProduct": "Add Product",
-            "outOfStock": "Out Of Stock",
-            "edit": "Edit Product"
-        },
-        "selectLocation": "Choose store location on the map",
-        "storeProducts": "Store Products",
-        "tagFilterDescription": "Use tags to filter your search",
-        "all": "All",
-        "productSearch": "Product Search"
-    },
-    "users": {
-        "users": "Users",
-        "titles": {
-            "edit": "Edit User",
-            "list": "Users",
-            "show": "User Detail"
-        },
-        "fields": {
-            "id": "ID",
-            "avatar": {
-                "label": "Avatar",
-                "description": "Click or drag avatar image to this area to upload."
-            },
-            "firstName": "First Name",
-            "lastName": "Last Name",
             "gender": {
                 "label": "Gender",
                 "Male": "Male",
                 "Female": "Female"
             },
-            "gsm": "Gsm Number",
-            "createdAt": "CreatedAt",
-            "isActive": {
-                "label": "Is Active",
-                "true": "Yes",
-                "false": "No"
-            }
+            "barcodeNo": "Barcode No",
+            "createdAt": "CreatedAt"
         },
         "filter": {
             "title": "Filters",
-            "search": {
-                "label": "Search",
-                "placeholder": "FirstName, lastName, gsm, etc."
-            },
             "createdAt": {
                 "label": "Created At"
+            },
+            "name": {
+                "label": "Full Name",
+                "placeholder": "Full Name"
+            },
+            "school": {
+                "label": "School",
+                "placeholder": "School"
+            },
+            "barcodeNo": {
+                "label": "Barcode No",
+                "placeholder": "Barcode No"
             },
             "gender": {
                 "label": "Gender",
@@ -388,9 +151,149 @@
             },
             "submit": "Filter"
         },
-        "addresses": {
-            "addresses": "Addresses",
-            "address": "Address"
+        "all": "All"
+    },
+    "papers": {
+        "papers": "Papers",
+        "titles": {
+            "list": "Papers",
+            "create": "Create Paper",
+            "edit": "Edit Paper"
+        },
+        "buttons": {
+            "editPaper": "Edit Paper",
+            "addPaper": "Add Paper"
+        },
+        "paperSearch": "Search Papers",
+        "fields": {
+            "id": "ID",
+            "name": "Name of the paper",
+            "description": "Description",
+            "isFullPaper": {
+                "name": "Paper type",
+                "values": {
+                    "inClassPaper": "In Class Paper",
+                    "fullPaper": "Full Paper"
+                }
+            },
+            "class": "Class",
+            "date": "Date",
+            "mcqCount": "MCQ Count",
+            "structuredEssayCount": "Structured Essay Count",
+            "essayCount": "Essay Count",
+            "totalMarksForMCQ": "Total Marks For MCQs",
+            "totalMarksForStructuredEssay": "Total Marks For Structured Essays",
+            "totalMarksForEssay": "Total Marks For Essays"
+        },
+        "filter": {
+            "title": "Filters",
+            "name": {
+                "label": "Paper Name",
+                "placeholder": "Full Name"
+            },
+            "description": {
+                "label": "Description",
+                "placeholder": "Description"
+            },
+            "class": {
+                "label": "A/L Class",
+                "placeholder": "A/L Class (Revision & Theory)"
+            },
+            "isFullPaper": {
+                "label": "Full Paper / In Class Paper",
+                "placeholder": "Full Paper / In Class Paper", 
+                "fullPaper": "Full Paper",
+                "inClassPaper": "In Class Paper"
+            },
+            "submit": "Filter"
+        }
+    },
+
+    "marks": {
+        "marks": "Marks",
+        "titles": {
+            "create": "Add New Mark",
+            "edit": "Edit Mark",
+            "list": "Marks",
+            "show": "Show Mark"
+        },
+        "fields": {
+            "id": "ID",
+            "paperALYear": "A/L Year",
+            "paperName": "Paper",
+            "class": "Class",
+            "studentName": "Student",
+            "studentBarcodeNo": "Barcode",
+            "mcq": "MCQ",
+            "structuredEssay": "Structured",
+            "essay": "Essay",
+            "total": "Total(Σ)"
+        },
+        "create": {
+            "fields": {
+                "paper": "Question Paper",
+                "studentBarcodeNo": "Barcode of Student",
+                "studentName": "Name of the student",
+                "mcq": "Correct MCQ Marks",
+                "structuredEssay": "Structured Essay Marks",
+                "essay": "Essay Marks",
+                "total": "Total Marks(Σ)"
+            }
+        },
+        "filter": {
+            "paperName": {
+                "label": "Paper Name",
+                "placeholder": "Search Paper"
+            },
+            "studentBarcodeNo": {
+                "label": "Barcode No",
+                "placeholder": "Search Barcode No"
+            },
+            "studentName": {
+                "label": "Student Name",
+                "placeholder": "Search Student Name"
+            },
+            "submit": "Filter Marks"
+        },
+        "all": "All"
+    },
+
+    "progressReports": {
+        "progressReports": "Progress Analysis",
+        "filter": {
+            "submit": "Generate Report"
+        },
+        "all": "All"
+    },
+    "analysisReports": {
+        "analysisReports": "Analysis Report",
+        "filter": {
+            "submit": "Generate Overrall Analysis Report"
+        },
+        "all": "All"
+    },
+    "classes": {
+        "classes": "Classes",
+        "titles": {
+            "create": "Create Class",
+            "edit": "Edit Class",
+            "list": "Classes",
+            "show": "Show Class"
+        },
+        "fields": {
+            "id": "Class ID",
+            "name": "Name",
+            "alYear": "Al Year", 
+            "type": {
+                "name": "Theory/Revision",
+                "types": {
+                    "theory": "Theory",
+                    "revision": "Revision"
+                }
+            },
+            "isActive": "Active",
+            "createdAt": "CreatedAt",
+            "description": "Description"
         }
     }
 }

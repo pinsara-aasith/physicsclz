@@ -1,7 +1,7 @@
 import { useLink } from "@refinedev/core";
 import { theme } from "antd";
 
-import { BikeWhiteIcon, FineFoodsIcon } from "..";
+import { SmallLogoIcon, UshanKolamunnaPhysicsIcon } from "..";
 import { Logo } from "./styled";
 
 const { useToken } = theme;
@@ -18,14 +18,14 @@ export const Title: React.FC<TitleProps> = ({ collapsed }) => {
         <Logo>
             <Link to="/">
                 {collapsed ? (
-                    <BikeWhiteIcon
+                    <SmallLogoIcon
                         style={{
                             fontSize: "32px",
                             color: token.colorTextHeading,
                         }}
                     />
                 ) : (
-                    <FineFoodsIcon style={{ color: token.colorTextHeading }} />
+                    <UshanKolamunnaPhysicsIcon style={{ color: token.colorTextHeading, width: "160px" }} />
                 )}
             </Link>
         </Logo>

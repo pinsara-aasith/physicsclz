@@ -1,2 +1,2 @@
-export const API_URL = "http://";
-export const TOKEN_KEY = "strapi-jwt-token";
+export const API_URL = "http://localhost:1337";
+export const TOKEN_KEY = "42837d7e3f0b1d1320ad0f266411cd57730ff27be512c1b56860a7709a05472dd2500fbf3252598e7cf0b37cd23bcc546aa02a726266e830cb847f5eace1275424dbac796331fb6f8beaec5033b76427f15349bc8092e3aa01bef31ef17e9c6783149838b8e7af836f1b5eccdb855364d2afcf57c6fc13a41818b69e3704aeec";

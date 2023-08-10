@@ -1,124 +1,128 @@
-import { Row, Col, Card, Typography } from "antd";
-import { useTranslation } from "react-i18next";
+import { useResource, useTranslate } from "@refinedev/core";
+import { Row, Col, Card, Image, Button } from "antd";
 
-import {
-    DailyRevenue,
-    DailyOrders,
-    NewCustomers,
-    DeliveryMap,
-    OrderTimeline,
-    RecentOrders,
-    TrendingMenu,
-} from "../../components";
-
-const { Text } = Typography;
-
+import { CSSProperties } from "react";
 export const DashboardPage: React.FC = () => {
-    const { t } = useTranslation();
+    const boxStyles: CSSProperties = {
+        backgroundColor: "#ffffff20",
+        borderRadius: "8px",
+
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "right",
+        boxShadow: "0px 2px 2px rgba(0, 0, 0, 0.3)"
+    };
+
+    const cardBodyStyles: CSSProperties =
+    {
+        padding: "10px",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        backgroundSize: "cover",
+        borderRadius: '10px',
+        width: '100%',
+        backgroundImage: "url(images/background.jpeg)",
+    };
+
+    const buttonStyles: CSSProperties = {
+        width: '90%',
+        backgroundColor: "#ffffff45",
+        fontWeight: "bold",
+        color: "#000000AA"
+    }
+
+    const { resources } = useResource();
+    const t = useTranslate();
 
     return (
         <Row gutter={[16, 16]}>
             <Col md={24}>
                 <Row gutter={[16, 16]}>
-                    <Col xl={10} lg={24} md={24} sm={24} xs={24}>
+                    <Col xl={24} lg={24} md={24} sm={24} xs={24}>
                         <Card
+                            style={{ ...boxStyles }}
                             bodyStyle={{
-                                padding: 10,
-                                paddingBottom: 0,
-                            }}
-                            style={{
-                                background: "url(images/daily-revenue.png)",
-                                backgroundRepeat: "no-repeat",
-                                backgroundPosition: "right",
-                                backgroundSize: "cover",
+                                padding: "40px",
                             }}
                         >
-                            <DailyRevenue />
-                        </Card>
-                    </Col>
-                    <Col xl={7} lg={12} md={24} sm={24} xs={24}>
-                        <Card
-                            bodyStyle={{
-                                padding: 10,
-                                paddingBottom: 0,
-                            }}
-                            style={{
-                                background: "url(images/daily-order.png)",
-                                backgroundRepeat: "no-repeat",
-                                backgroundPosition: "right",
-                                backgroundSize: "cover",
-                            }}
-                        >
-                            <DailyOrders />
-                        </Card>
-                    </Col>
-                    <Col xl={7} lg={12} md={24} sm={24} xs={24}>
-                        <Card
-                            bodyStyle={{
-                                padding: 10,
-                                paddingBottom: 0,
-                            }}
-                            style={{
-                                background: "url(images/new-orders.png)",
-                                backgroundRepeat: "no-repeat",
-                                backgroundPosition: "right",
-                                backgroundSize: "cover",
-                            }}
-                        >
-                            <NewCustomers />
+                            <Image
+                                src={'/images/banner.jpg'}
+                                style={{ borderRadius: '10px', ...boxStyles }}
+                                preview={false}
+                            />
+
+                            <Row gutter={[16, 16]} style={{ marginTop: '35px' }}>
+                                <Col xl={6} lg={6} md={6} sm={6} xs={6}>
+                                    <Card
+                                        bodyStyle={cardBodyStyles}
+                                        style={{ ...boxStyles }}
+                                    >
+                                        <Image
+                                            preview={false}
+                                            src="/images/students.png"
+                                            width={160}
+                                            style={{ padding: "20px" }}
+                                        />
+                                        <Button style={buttonStyles} href={resources.find(r => r.name == 'students')?.list?.toString()}>
+                                            {t('dashboard.manageStudents.title')}
+                                        </Button>
+                                    </Card>
+                                </Col>
+
+                                <Col xl={6} lg={6} md={6} sm={6} xs={6}>
+                                    <Card
+                                        bodyStyle={cardBodyStyles}
+                                        style={{ ...boxStyles }}
+                                    >
+                                        <Image
+                                            preview={false}
+                                            src="/images/papers.png"
+                                            width={160}
+                                            style={{ padding: "20px" }}
+                                        />
+                                        <Button style={buttonStyles} href={resources.find(r => r.name == 'papers')?.list?.toString()}>
+                                            {t('dashboard.managePapers.title')}
+                                        </Button>
+                                    </Card>
+                                </Col>
+                                <Col xl={6} lg={6} md={6} sm={6} xs={6}>
+                                    <Card
+                                        bodyStyle={cardBodyStyles}
+                                        style={{ ...boxStyles }}
+                                    >
+                                        <Image
+                                            preview={false}
+                                            src="/images/petition.png"
+                                            width={160}
+                                            style={{ padding: "20px" }}
+                                        />
+                                        <Button style={buttonStyles} href={resources.find(r => r.name == 'marks')?.list?.toString()}>
+                                            {t('dashboard.manageMarks.title')}
+                                        </Button>
+                                    </Card>
+                                </Col>
+                                <Col xl={6} lg={6} md={6} sm={6} xs={6}>
+                                    <Card
+                                        bodyStyle={cardBodyStyles}
+                                        style={{ ...boxStyles }}
+                                    >
+                                        <Image
+                                            preview={false}
+                                            src="/images/bar-chart.png"
+                                            width={160}
+                                            style={{ padding: "20px" }}
+                                        />
+                                        <Button style={buttonStyles} href={resources.find(r => r.name == 'progressReportsw')?.list?.toString()}>
+                                            {t('dashboard.analysis.title')}
+                                        </Button>
+                                    </Card>
+                                </Col>
+                            </Row>
+
                         </Card>
                     </Col>
                 </Row>
-            </Col>
-            <Col xl={17} lg={16} md={24} sm={24} xs={24}>
-                <Card
-                    bodyStyle={{
-                        height: 550,
-                        padding: 0,
-                    }}
-                    title={
-                        <Text
-                            strong /* style={{ fontSize: 24, fontWeight: 800 }} */
-                        >
-                            {t("dashboard.deliveryMap.title")}
-                        </Text>
-                    }
-                >
-                    <DeliveryMap />
-                </Card>
-            </Col>
-            <Col xl={7} lg={8} md={24} sm={24} xs={24}>
-                <Card
-                    bodyStyle={{
-                        height: 550,
-                        overflowY: "scroll",
-                    }}
-                    title={
-                        <Text strong style={{ textTransform: "capitalize" }}>
-                            {t("dashboard.timeline.title")}
-                        </Text>
-                    }
-                >
-                    <OrderTimeline />
-                </Card>
-            </Col>
-            <Col xl={17} lg={16} md={24} sm={24} xs={24}>
-                <Card
-                    title={
-                        <Text strong>{t("dashboard.recentOrders.title")}</Text>
-                    }
-                >
-                    <RecentOrders />
-                </Card>
-            </Col>
-            <Col xl={7} lg={8} md={24} sm={24} xs={24}>
-                <Card
-                    title={
-                        <Text strong>{t("dashboard.trendingMenus.title")}</Text>
-                    }
-                >
-                    <TrendingMenu />
-                </Card>
             </Col>
         </Row>
     );

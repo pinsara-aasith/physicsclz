@@ -43,6 +43,8 @@ const MapComponent: FC<PropsWithChildren<MapProps>> = ({
                     // eslint-disable-next-line
                     return cloneElement<any>(child, { map });
                 }
+
+                return <></>
             })}
         </>
     );

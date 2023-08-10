@@ -1,0 +1,58 @@
+{
+  "kind": "collectionType",
+  "collectionName": "papers",
+  "info": {
+    "singularName": "paper",
+    "pluralName": "papers",
+    "displayName": "Paper",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "date": {
+      "type": "date"
+    },
+    "mcqCount": {
+      "type": "integer",
+      "default": 50
+    },
+    "structuredEssayCount": {
+      "type": "integer",
+      "default": 4
+    },
+    "essayCount": {
+      "type": "integer",
+      "default": 4
+    },
+    "isFullPaper": {
+      "type": "boolean",
+      "default": true
+    },
+    "totalMarksForMCQ": {
+      "type": "integer",
+      "default": 200
+    },
+    "totalMarksForStructuredEssay": {
+      "type": "integer",
+      "default": 80
+    },
+    "totalMarksForEssay": {
+      "type": "integer",
+      "default": 120
+    },
+    "class": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::class.class"
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}

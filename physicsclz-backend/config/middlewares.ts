@@ -1,12 +1,19 @@
 export default [
   'strapi::errors',
   'strapi::security',
-  'strapi::cors',
   'strapi::poweredBy',
   'strapi::logger',
   'strapi::query',
   'strapi::body',
   'strapi::session',
-  'strapi::favicon',
+  'strapi::favicon',  
+  {
+    name: 'strapi::cors',
+    config: {
+      enabled: true,
+      headers: '*',
+      origin: ['http://localhost:5173', 'http://localhost:1337', 'http://localhost']
+    }
+  },
   'strapi::public',
 ];
