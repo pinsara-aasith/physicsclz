@@ -94,6 +94,10 @@ export const ClassEdit: React.FC<IResourceComponentsProps> = () => {
                                         label: t("classes.fields.type.types.revision"),
                                         value: "Revision",
                                     },
+                                    {
+                                        label: t("classes.fields.type.types.paper"),
+                                        value: "Paper",
+                                    },
                                 ]}
                             />
                         </Form.Item>

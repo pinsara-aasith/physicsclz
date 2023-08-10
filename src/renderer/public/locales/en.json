@@ -288,7 +288,8 @@
                 "name": "Theory/Revision",
                 "types": {
                     "theory": "Theory",
-                    "revision": "Revision"
+                    "revision": "Revision",
+                    "paper": "Paper"
                 }
             },
             "isActive": "Active",
