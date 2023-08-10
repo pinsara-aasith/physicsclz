@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
     useGetLocale,
     useResource,
@@ -78,7 +78,16 @@ export const Header: React.FC = () => {
     const { resources } = useResource()
 
     const location = useLocation();
-    const hideSelect = !resources.filter(r => r.name == 'dashboard' || r.name == 'students' || r.name == 'classes').find(r => location.pathname.includes(r.name));
+    const [hideClassSearch, setHideClassSearch] = useState(true)
+
+    useEffect(() => {
+        console.log(resources.filter(r => r.name == 'dashboard' || r.name == 'students' || r.name == 'classes'))
+        
+        setHideClassSearch(!!resources
+            .filter(r => r.name == 'dashboard' || r.name == 'students' || r.name == 'classes')
+            .find(r => location.pathname.includes(r.name) || location.pathname == '/'))
+
+    }, [location]);
 
     return (
         <AntdHeader
@@ -104,7 +113,7 @@ export const Header: React.FC = () => {
                             width: "100%",
                             maxWidth: "250px",
                             fontWeight: 'bold',
-                            ...hideSelect ? { display: 'none' } : {}
+                            ...hideClassSearch ? { display: 'none' } : {}
                         }}
                         placeholder="Select a class to filter data"
                         value={selectedClassId as any}
