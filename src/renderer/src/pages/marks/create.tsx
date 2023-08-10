@@ -12,7 +12,7 @@ import {
 } from "@refinedev/antd";
 
 import {
-    Form, Select, Row, Col, InputNumber, Image, Button,
+    Form, Select, Row, Col, InputNumber, Image
 } from "antd";
 
 import { IMark, IPaper, IStudent } from "../../interfaces";

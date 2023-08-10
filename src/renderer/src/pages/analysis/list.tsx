@@ -146,7 +146,7 @@ export const Analysis: React.FC<IResourceComponentsProps> = () => {
                                 />
                                 <Table.Column
                                     key="[paper][class][name]"
-                                    dataIndex={["paper","class", "name"]}
+                                    dataIndex={["paper", "class", "name"]}
                                     title={t("marks.fields.class")}
                                 />
                                 <Table.Column
@@ -270,6 +270,7 @@ const BarTooltip: React.FunctionComponent<any> = (props) => {
             value={props.data?.absent ? 'ABSENT' : props.value}
             color={props.color}
             enableChip
+            format={(v) => !props.data?.absent ? `${v}%` : String(v)}
         />
     );
 };
@@ -279,6 +280,7 @@ const ResponsiveProgressChart: React.FC<ResponsiveProgressChartProps> = (props) 
     const { selectedClassId } = useClassSearchProvider();
 
     const [radioButtonValue, setRadioButtonValue] = useState('all');
+    const [paperType, setPaperType] = useState('all');
 
     const { data: markData } = useList<IMark>({
         resource: "marks",
@@ -320,7 +322,13 @@ const ResponsiveProgressChart: React.FC<ResponsiveProgressChartProps> = (props) 
 
     const [keys, chartData] = useMemo(() => {
         const keys: any[] = [];
-        const chartData = (paperData?.data || []).map((d) => {
+        const chartData = (paperData?.data || []).filter(p => {
+            if(paperType == 'all') return true;
+            if(paperType == 'inClassPaper' && !p.isFullPaper) return true;
+            if(paperType == 'fullPaper' && p.isFullPaper) return true;
+
+            return false
+        }).map((d) => {
             const mark = markData?.data?.find(m => m.paper?.id == d.id);
             if (!mark) {
                 return {
@@ -362,18 +370,26 @@ const ResponsiveProgressChart: React.FC<ResponsiveProgressChartProps> = (props) 
             keys.push({ id: 'Total Percentage', label: "Total" })
 
         return [keys, chartData]
-    }, [markData, paperData, radioButtonValue])
+    }, [markData, paperData, radioButtonValue, paperType])
 
     return (
         <div style={{ width: '100%', height: '350px' }}>
             <Radio.Group value={radioButtonValue} onChange={(e) => setRadioButtonValue(e.target.value)}>
-                <Radio.Button type="primary" value="all">All</Radio.Button>
-                <Radio.Button type="primary" value="mcq">MCQ</Radio.Button>
-                <Radio.Button type="primary" value="structuredEssay">Structured Essay</Radio.Button>
-                <Radio.Button type="primary" value="essay">Essay</Radio.Button>
-                <Radio.Button type="primary" value="total">Total</Radio.Button>
+                <Radio.Button value="all">All</Radio.Button>
+                <Radio.Button value="mcq">MCQ</Radio.Button>
+                <Radio.Button value="structuredEssay">Structured Essay</Radio.Button>
+                <Radio.Button value="essay">Essay</Radio.Button>
+                <Radio.Button value="total">Total</Radio.Button>
+            </Radio.Group>
+
+            <Radio.Group style={{ paddingLeft: '20px' }} value={paperType} onChange={(e) => setPaperType(e.target.value)}>
+                <Radio.Button value="all">All</Radio.Button>
+                <Radio.Button value="inClassPaper">In Class Papers</Radio.Button>
+                <Radio.Button value="fullPaper">Full Papers</Radio.Button>
             </Radio.Group>
             <ResponsiveBar
+                valueFormat={(v) => `${v}%`}
+                labelFormat={(v) => `${v}%`}
                 enableLabel={false}
                 data={chartData as any}
                 keys={keys.map(k => k.id)}

@@ -15,7 +15,7 @@ import {
 
 import { Table, Select, Space, Form, Col, Row, FormProps, Button } from "antd";
 
-import { IClass, IMark, IMarkFilterVariables, IPaper, IStudent } from "../../interfaces";
+import { IMark, IMarkFilterVariables, IPaper, IStudent } from "../../interfaces";
 import { useQuery } from "../../hooks";
 import { useClassSearchProvider, useMustHaveClassSelected } from "../../context/classSearchProvider";
 
@@ -74,7 +74,7 @@ export const MarkList: React.FC<IResourceComponentsProps> = () => {
             return filters;
         },
         metaData: {
-            populate: ["paper", "student"]
+            populate: ["paper", "student", "paper.class"]
         },
         filters: {
             initial: initialFilters
@@ -160,8 +160,8 @@ export const MarkList: React.FC<IResourceComponentsProps> = () => {
                         title={t("marks.fields.paperName")}
                     />
                     <Table.Column
-                        key="[paper][class][type]"
-                        dataIndex={["paper", "class", "type"]}
+                        key="[paper][class][name]"
+                        dataIndex={["paper", "class", "name"]}
                         title={t("marks.fields.class")}
                     />
                     <Table.Column

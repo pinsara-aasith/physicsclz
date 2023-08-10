@@ -1,4 +1,4 @@
-import { useTranslate, BaseKey, useResource } from "@refinedev/core";
+import { BaseKey, useResource } from "@refinedev/core";
 import {
     FormOutlined,
     MoreOutlined,
@@ -28,7 +28,6 @@ export const PaperItem: React.FC<PaperItemProps> = ({
     item,
     editShow,
 }) => {
-    const t = useTranslate();
     const { resources } = useResource()
 
     let showMarksLink = resources.find(r => r.name == "marks")?.list?.toString();

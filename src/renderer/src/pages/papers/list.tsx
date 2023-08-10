@@ -31,11 +31,6 @@ export const PaperList: React.FC<IResourceComponentsProps> = () => {
                     value: description,
                 },
                 {
-                    field: "class",
-                    operator: "eq",
-                    value: selectedClassId,
-                },
-                {
                     field: "isFullPaper",
                     operator: "eq",
                     value: isFullPaper,
@@ -44,6 +39,7 @@ export const PaperList: React.FC<IResourceComponentsProps> = () => {
 
             return paperFilters;
         },
+        
         sorters: {
             initial: [{ field: 'id', order: 'desc' }]
         },

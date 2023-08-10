@@ -361,7 +361,7 @@ const ResponsiveProgressChart: React.FC<ResponsiveProgressChartProps> = (props) 
             <ResponsivePie
                 data={chartData}
                 margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
-                innerRadius={0.5}
+                innerRadius={0.4}
                 padAngle={0.7}
                 cornerRadius={1}
                 activeOuterRadiusOffset={8}

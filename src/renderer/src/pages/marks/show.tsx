@@ -24,7 +24,7 @@ export const MarkShow: React.FC<IResourceComponentsProps> = () => {
                 <Descriptions.Item label="Student's Full Name" span={2}>{mark?.student?.name}</Descriptions.Item>
                 <Descriptions.Item label="School">{mark?.student.school}</Descriptions.Item>
                 <Descriptions.Item label="Paper">{mark?.paper?.name}</Descriptions.Item>
-                <Descriptions.Item label="A/L Year">{mark?.paper?.alYear}</Descriptions.Item>
+                <Descriptions.Item label="Class">{mark?.paper?.class?.name}</Descriptions.Item>
             </Descriptions>
             <Divider/>
             <Descriptions bordered>

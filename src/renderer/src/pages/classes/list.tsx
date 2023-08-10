@@ -2,7 +2,6 @@ import {
     useTranslate,
     IResourceComponentsProps,
     useNavigation,
-    useShow,
 } from "@refinedev/core";
 import {
     List,

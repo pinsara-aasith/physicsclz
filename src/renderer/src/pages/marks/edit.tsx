@@ -22,7 +22,7 @@ import { calculateTotalMarks } from "./create";
 export const MarkEdit: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
 
-    const { formProps, saveButtonProps, queryResult, form } = useForm<IMark>({
+    const { formProps, saveButtonProps, queryResult, form, formLoading } = useForm<IMark>({
         successNotification: {
             message: 'Mark was edited successfully',
             type: 'success'
@@ -39,13 +39,17 @@ export const MarkEdit: React.FC<IResourceComponentsProps> = () => {
     let selectedPaper = queryResult?.data?.data?.paper
     let selectedStudent = queryResult?.data?.data?.student
 
-    console.log(selectedPaper?.name, selectedStudent, queryResult)
+    useEffect(() => {
+        setMCQCount(form.getFieldValue("mcq"));
+        setStructuredMarks(form.getFieldValue("structuredEssay"));
+        setEssayMarks(form.getFieldValue("essay"));
+    }, [formLoading])
 
     useEffect(() => {
         const totalMarks = calculateTotalMarks(mcqCount, structuredMarks, essayMarks, selectedPaper as IPaper)
 
-        form?.setFieldValue('total', totalMarks)
-    }, [mcqCount, structuredMarks, essayMarks, queryResult])
+        form.setFieldValue('total', totalMarks)
+    }, [mcqCount, structuredMarks, essayMarks])
 
     return (
         <Edit
@@ -69,7 +73,7 @@ export const MarkEdit: React.FC<IResourceComponentsProps> = () => {
                     <Col xs={24} lg={16}>
                         <Row gutter={10}>
                             <Col xs={24} lg={24}>
-                                <Form.Item rules={[{ required: true }]}  label={t("marks.create.fields.paper")}>
+                                <Form.Item rules={[{ required: true }]} label={t("marks.create.fields.paper")}>
                                     <Input
                                         disabled={true}
                                         value={selectedPaper?.name}
