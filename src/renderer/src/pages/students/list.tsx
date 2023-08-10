@@ -139,13 +139,7 @@ export const StudentList: React.FC<IResourceComponentsProps> = () => {
                         <Table
                             {...tableProps}
                             rowKey="id"
-                            onRow={(record) => {
-                                return {
-                                    onClick: () => {
-                                        location = `${marksResouce.list}?studentId=${record.id}` as any;
-                                    },
-                                };
-                            }}>
+                            >
                             <Table.Column
                                 key="image"
                                 align="center"

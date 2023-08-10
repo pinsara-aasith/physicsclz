@@ -67,6 +67,7 @@ export const PaperList: React.FC<IResourceComponentsProps> = () => {
         formProps: createFormProps,
         saveButtonProps: createSaveButtonProps,
         show: createShow,
+        form: createForm
     } = useDrawerForm<IPaper>({
         action: "create",
         resource: "papers",
@@ -160,6 +161,7 @@ export const PaperList: React.FC<IResourceComponentsProps> = () => {
             <CreatePaper
                 drawerProps={createDrawerProps}
                 formProps={createFormProps}
+                form={createForm}
                 saveButtonProps={createSaveButtonProps}
             />
             <EditPaper

@@ -19,9 +19,11 @@ import {
     Row,
     Col,
     InputNumber,
+    AutoComplete,
 } from "antd";
 
 import { IStudent } from "../../interfaces";
+import { SCHOOL_NAMES } from "./schoolNames";
 
 const { Text } = Typography;
 
@@ -120,7 +122,7 @@ export const StudentEdit: React.FC<IResourceComponentsProps> = () => {
                                         },
                                     ]}
                                 >
-                                    <Input />
+                                    <AutoComplete options={SCHOOL_NAMES.map((t) => ({ label: t, value: t }))} />
                                 </Form.Item>
 
                             </Col>

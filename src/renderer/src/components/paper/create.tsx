@@ -15,19 +15,23 @@ import {
     DatePicker,
     Divider,
     Select,
+    FormInstance,
 } from "antd";
 import { IClass } from "@renderer/src/interfaces";
+import { useEffect, useState } from "react";
 
 
 type CreatePaperProps = {
     drawerProps: DrawerProps;
     formProps: FormProps;
+    form: FormInstance;
     saveButtonProps: ButtonProps;
 };
 
 export const CreatePaper: React.FC<CreatePaperProps> = ({
     drawerProps,
     formProps,
+    form,
     saveButtonProps,
 }) => {
     const t = useTranslate();
@@ -44,6 +48,22 @@ export const CreatePaper: React.FC<CreatePaperProps> = ({
             },
         ],
     });
+
+    const [totalMarksForStructuredEssay, setTotalMarksForStructuredEssay] = useState<number>(80);
+    const [totalMarksForEssay, setTotalMarksForEssay] = useState<number>(120);
+    const [mcqCount, setMCQCount] = useState<number>(50);
+
+    useEffect(() => {
+        if (mcqCount == 0) {
+            form.setFieldValue('totalMarksForMCQ', 0)
+        } else {
+            if (totalMarksForEssay != 0 || totalMarksForStructuredEssay != 0) {
+                form.setFieldValue('totalMarksForMCQ', totalMarksForEssay + totalMarksForStructuredEssay)
+            } else {
+                form.setFieldValue('totalMarksForMCQ', 100)
+            }
+        }
+    }, [totalMarksForEssay, totalMarksForStructuredEssay, mcqCount]);
 
     return (
         <Drawer
@@ -76,7 +96,6 @@ export const CreatePaper: React.FC<CreatePaperProps> = ({
                         totalMarksForStructuredEssay: 80,
                         essayCount: 4,
                         totalMarksForEssay: 120,
-
                     }}
                 >
                     <Form.Item
@@ -129,7 +148,7 @@ export const CreatePaper: React.FC<CreatePaperProps> = ({
 
                     <Divider />
                     <Row gutter={12}>
-                        <Col xs={24} lg={10}>
+                        <Col xs={24} lg={24}>
                             <Form.Item
                                 label={t("papers.fields.mcqCount")}
                                 name="mcqCount"
@@ -138,10 +157,11 @@ export const CreatePaper: React.FC<CreatePaperProps> = ({
                                 <InputNumber
                                     style={{ width: "100%" }}
                                     defaultValue={50}
+                                    onChange={(v) => setMCQCount(v || 0)}
                                 />
                             </Form.Item>
                         </Col>
-                        <Col xs={24} lg={14}>
+                        <Col xs={24} lg={14} style={{ display: 'none' }}>
                             <Form.Item
                                 label={t("papers.fields.totalMarksForMCQ")}
                                 name="totalMarksForMCQ"
@@ -177,6 +197,7 @@ export const CreatePaper: React.FC<CreatePaperProps> = ({
                                 <InputNumber
                                     style={{ width: "100%" }}
                                     defaultValue={80}
+                                    onChange={(v) => setTotalMarksForStructuredEssay(v || 0)}
                                 />
                             </Form.Item>
                         </Col>
@@ -205,6 +226,7 @@ export const CreatePaper: React.FC<CreatePaperProps> = ({
                                 <InputNumber
                                     style={{ width: "100%" }}
                                     defaultValue={120}
+                                    onChange={(v) => setTotalMarksForEssay(v || 0)}
                                 />
                             </Form.Item>
                         </Col>

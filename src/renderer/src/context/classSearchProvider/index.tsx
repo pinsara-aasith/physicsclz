@@ -54,8 +54,8 @@ export const ClassSearchProvider: FC<PropsWithChildren> = ({ children }) => {
                 open={openClassFilterDialog}
                 title={<><ClusterOutlined /><span>&nbsp;&nbsp;&nbsp;Select a class</span></>}
                 maskClosable={false}
-                closable={false}
                 footer={[]}
+                onCancel={() => setOpenClassFilterDialog(false)}
             >
 
                 <Space
