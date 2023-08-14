@@ -16,7 +16,7 @@ app.get('/test', (req, res) => {
 
 // let process = null;
 
-app.use(express.static(path.join(__dirname, './out/renderer')));
+app.use(express.static(path.join(__dirname, '.\\out\\renderer')));
 
 if (/^win/.test(platform)) {
   // app.use(express.static(path.join(__dirname,'.\\out\\renderer')));
