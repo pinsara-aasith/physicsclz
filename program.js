@@ -19,7 +19,7 @@ app.get('/test', (req, res) => {
 
 let process = null;
 
-console.log(platform, /^win/.test(platform));
+console.log(platform, /^win/.test(platform), ".\\physicsclz-backend");
 console.log('.\\node_modules\\.bin\\strapi', ['start'], { cwd: '.\\physicsclz-backend' })
 
 if (/^win/.test(platform)) {
