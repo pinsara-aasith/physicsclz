@@ -5,7 +5,6 @@ import {
     CrudFilters,
     HttpError,
     useDelete,
-    useResource,
 } from "@refinedev/core";
 import {
     List,
@@ -74,7 +73,6 @@ export const StudentList: React.FC<IResourceComponentsProps> = () => {
 
 
     const { edit } = useNavigation();
-    const { resource: marksResouce } = useResource("marks");
 
     const t = useTranslate();
 

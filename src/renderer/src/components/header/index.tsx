@@ -33,7 +33,6 @@ const { useToken } = theme;
 const { useBreakpoint } = Grid;
 
 import './header.css'
-import { useQuery } from "@renderer/src/hooks";
 import { useLocation } from "react-router-dom";
 
 export const Header: React.FC = () => {
