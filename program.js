@@ -6,6 +6,8 @@ const utils = require("@electron-toolkit/utils");
 const icon = path.join(__dirname, "./resources/icon.png");
 const express = require('express');
 const { spawn } = require("child_process");
+const platform = require("os").platform()
+
 const app = express();
 const PORT = 5173;
 
@@ -15,7 +17,17 @@ app.get('/test', (req, res) => {
   res.send('HTTP server working!');
 });
 
-let process = spawn('./node_modules/.bin/strapi',['start'],  {cwd: './physicsclz-backend'})
+let process = null;
+
+console.log(platform, /^win/.test(platform));
+console.log('.\\node_modules\\.bin\\strapi', ['start'], { cwd: '.\\physicsclz-backend' })
+
+if (/^win/.test(platform)) {
+  process = spawn('.\\node_modules\\.bin\\strapi', ['start'], { cwd: '.\\physicsclz-backend' })
+} else {
+  process = spawn('./node_modules/.bin/strapi', ['start'], { cwd: './physicsclz-backend' })
+}
+
 
 process.stderr.on('data', (data) => {
   console.error(`stderr: ${data}`);
