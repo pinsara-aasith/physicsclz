@@ -55,7 +55,7 @@ function createWindow() {
     return { action: "deny" };
   });
 
-  mainWindow.loadURL('http://localhost:3010');
+  mainWindow.loadURL('http://localhost:5173');
 }
 
 electron.app.whenReady().then(() => {
