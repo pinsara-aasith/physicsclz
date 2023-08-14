@@ -18,7 +18,13 @@ app.get('/test', (req, res) => {
 
 let process = null;
 
-app.use(express.static(path.join(__dirname, './out/renderer')));
+app.use('/assets', express.static(path.join(__dirname, './out/renderer/assets')));
+app.use('/images', express.static(path.join(__dirname, './out/renderer/images')));
+app.use('/locales', express.static(path.join(__dirname, './out/renderer/locales')));
+
+app.get('*', function (request, response) {
+  response.sendFile(path.resolve(__dirname, './out/renderer/index.html'));
+});
 
 if (/^win/.test(platform)) {
   process = spawn('.\\node_modules\\.bin\\strapi', ['start'], { cwd: '.\\physicsclz-backend', shell: true })
@@ -45,8 +51,8 @@ app.listen(PORT, () => console.log(`HTTP server started on port: ${PORT}`));
 
 function createWindow() {
   const mainWindow = new electron.BrowserWindow({
-    width: 900,
-    height: 670,
+    width: 1100,
+    height: 790,
     show: false,
     autoHideMenuBar: true,
     ...process.platform === "linux" ? { icon } : {},
