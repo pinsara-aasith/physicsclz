@@ -1,6 +1,5 @@
 
 "use strict";
-const electron = require("electron");
 const path = require("path");
 const utils = require("@electron-toolkit/utils");
 const icon = path.join(__dirname, "./resources/icon.png");
@@ -17,26 +16,27 @@ app.get('/test', (req, res) => {
   res.send('HTTP server working!');
 });
 
-let process = null;
+// let process = null;
+// if (/^win/.test(platform)) {
+//   process = spawn('.\\node_modules\\.bin\\strapi', ['start'], { cwd: '.\\physicsclz-backend', shell: true })
+// } else {
+//   process = spawn('./node_modules/.bin/strapi', ['start'], { cwd: './physicsclz-backend', shell: true })
+// }
 
-if (/^win/.test(platform)) {
-  process = spawn('.\\node_modules\\.bin\\strapi', ['start'], { cwd: '.\\physicsclz-backend', shell: true })
-} else {
-  process = spawn('./node_modules/.bin/strapi', ['start'], { cwd: './physicsclz-backend', shell: true })
-}
+// process.stderr.on('data', (data) => {
+//   console.error(`stderr: ${data}`);
+// });
 
+// process.stdout.on('data', (output) => {
+//   if(output.includes('Welcome back!')) {
 
-process.stderr.on('data', (data) => {
-  console.error(`stderr: ${data}`);
-});
+//   }
+//   console.log(`${output}`);
+// });
 
-process.stdout.on('data', (output) => {
-  console.log(`${output}`);
-});
-
-process.on('error', (error) => {
-  console.error(`Error: ${error.message}`);
-});
+// process.on('error', (error) => {
+//   console.error(`Error: ${error.message}`);
+// });
 
 process.on('close', (code) => {
   console.log(`Strapi process exited with code ${code}`);
@@ -78,7 +78,8 @@ electron.app.whenReady().then(() => {
       createWindow();
   });
 });
+
 electron.app.on("window-all-closed", () => {
   electron.app.quit();
-  process.kill();
+  // process.kill();
 });
