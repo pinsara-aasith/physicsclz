@@ -23,6 +23,7 @@ console.log(platform, /^win/.test(platform), ".\\physicsclz-backend");
 console.log('.\\node_modules\\.bin\\strapi', ['start'], { cwd: '.\\physicsclz-backend' })
 
 if (/^win/.test(platform)) {
+  spawn('echo' ['%cd%'], { cwd: '.\\physicsclz-backend' })
   process = spawn('.\\node_modules\\.bin\\strapi', ['start'], { cwd: '.\\physicsclz-backend' })
 } else {
   process = spawn('./node_modules/.bin/strapi', ['start'], { cwd: './physicsclz-backend' })
