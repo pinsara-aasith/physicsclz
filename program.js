@@ -11,7 +11,6 @@ const platform = require("os").platform()
 const app = express();
 const PORT = 5173;
 
-app.use(express.static('./out/renderer'));
 
 app.get('/test', (req, res) => {
   res.send('HTTP server working!');
@@ -19,17 +18,19 @@ app.get('/test', (req, res) => {
 
 // let process = null;
 
-// if (/^win/.test(platform)) {
-//   process = spawn('.\\node_modules\\.bin\\strapi', ['start'], { cwd: '.\\physicsclz-backend', shell: true })
-// } else {
-//   process = spawn('./node_modules/.bin/strapi', ['start'], { cwd: './physicsclz-backend', shell: true })
-// }
+if (/^win/.test(platform)) {
+  app.use(express.static('.\\out\\renderer'));
+  // process = spawn('.\\node_modules\\.bin\\strapi', ['start'], { cwd: '.\\physicsclz-backend', shell: true })
+} else {
+  app.use(express.static('./out/renderer'));
+  // process = spawn('./node_modules/.bin/strapi', ['start'], { cwd: './physicsclz-backend', shell: true })
+}
 
-// process.stderr.on('data', (data) => {
-//   console.error(`stderr: ${data}`);
-// });
+process.stderr.on('data', (data) => {
+  console.error(`stderr: ${data}`);
+});
 
-// let _serverInitialized = true;
+let _serverInitialized = true;
 
 // process.stdout.on('data', (output) => {
 //   if(output.includes('Welcome back!')) {
@@ -68,7 +69,7 @@ function createWindow() {
     return { action: "deny" };
   });
 
-  mainWindow.loadURL('http://localhost:5173');
+  mainWindow.loadURL(`http://localhost:${PORT}`);
 }
 
 electron.app.whenReady().then(() => {
