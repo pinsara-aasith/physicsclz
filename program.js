@@ -1,5 +1,6 @@
 
 "use strict";
+const electron = require("electron");
 const path = require("path");
 const utils = require("@electron-toolkit/utils");
 const icon = path.join(__dirname, "./resources/icon.png");
@@ -17,6 +18,7 @@ app.get('/test', (req, res) => {
 });
 
 // let process = null;
+
 // if (/^win/.test(platform)) {
 //   process = spawn('.\\node_modules\\.bin\\strapi', ['start'], { cwd: '.\\physicsclz-backend', shell: true })
 // } else {
@@ -26,6 +28,8 @@ app.get('/test', (req, res) => {
 // process.stderr.on('data', (data) => {
 //   console.error(`stderr: ${data}`);
 // });
+
+// let _serverInitialized = true;
 
 // process.stdout.on('data', (output) => {
 //   if(output.includes('Welcome back!')) {
@@ -38,9 +42,9 @@ app.get('/test', (req, res) => {
 //   console.error(`Error: ${error.message}`);
 // });
 
-process.on('close', (code) => {
-  console.log(`Strapi process exited with code ${code}`);
-});
+// process.on('close', (code) => {
+//   console.log(`Strapi process exited with code ${code}`);
+// });
 
 app.listen(PORT, () => console.log(`HTTP server started on port: ${PORT}`));
 
@@ -78,7 +82,6 @@ electron.app.whenReady().then(() => {
       createWindow();
   });
 });
-
 electron.app.on("window-all-closed", () => {
   electron.app.quit();
   // process.kill();
