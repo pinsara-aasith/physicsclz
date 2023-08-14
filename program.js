@@ -5,16 +5,35 @@ const path = require("path");
 const utils = require("@electron-toolkit/utils");
 const icon = path.join(__dirname, "./resources/icon.png");
 const express = require('express');
+const { spawn } = require("child_process");
 const app = express();
-const PORT = 3010;
+const PORT = 5173;
 
-app.use(express.static('out/renderer'));
+app.use(express.static('./out/renderer'));
 
 app.get('/test', (req, res) => {
-    res.send('HTTP server working!');
+  res.send('HTTP server working!');
 });
 
-app.listen(PORT, () => console.log(`Server listening on port: ${PORT}`));
+let process = spawn('./node_modules/.bin/strapi',['start'],  {cwd: './physicsclz-backend'})
+
+process.stderr.on('data', (data) => {
+  console.error(`stderr: ${data}`);
+});
+
+process.stdout.on('data', (output) => {
+  console.log(`${output}`);
+});
+
+process.on('error', (error) => {
+  console.error(`Error: ${error.message}`);
+});
+
+process.on('close', (code) => {
+  console.log(`Strapi process exited with code ${code}`);
+});
+
+app.listen(PORT, () => console.log(`HTTP server started on port: ${PORT}`));
 
 function createWindow() {
   const mainWindow = new electron.BrowserWindow({
@@ -37,21 +56,20 @@ function createWindow() {
   });
 
   mainWindow.loadURL('http://localhost:3010');
-
 }
+
 electron.app.whenReady().then(() => {
   utils.electronApp.setAppUserModelId("com.electron");
   electron.app.on("browser-window-created", (_, window) => {
     utils.optimizer.watchWindowShortcuts(window);
   });
   createWindow();
-  electron.app.on("activate", function() {
+  electron.app.on("activate", function () {
     if (electron.BrowserWindow.getAllWindows().length === 0)
       createWindow();
   });
 });
 electron.app.on("window-all-closed", () => {
-  if (process.platform !== "darwin") {
-    electron.app.quit();
-  }
+  electron.app.quit();
+  process.kill();
 });
