@@ -18,11 +18,13 @@ app.get('/test', (req, res) => {
 
 // let process = null;
 
+app.use(express.static(path.join(__dirname, './out/renderer')));
+
 if (/^win/.test(platform)) {
-  app.use(express.static('.\\out\\renderer'));
+  // app.use(express.static(path.join(__dirname,'.\\out\\renderer')));
   // process = spawn('.\\node_modules\\.bin\\strapi', ['start'], { cwd: '.\\physicsclz-backend', shell: true })
 } else {
-  app.use(express.static('./out/renderer'));
+  // app.use(express.static());
   // process = spawn('./node_modules/.bin/strapi', ['start'], { cwd: './physicsclz-backend', shell: true })
 }
 
