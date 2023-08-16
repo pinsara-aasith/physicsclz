@@ -115,7 +115,7 @@ export const PaperItem: React.FC<PaperItemProps> = ({
                     <Button type="default" style={{ marginTop: "16px", width: '100%' }}>View Marks</Button>
                 </Link>
                 <Link to={`${showAnalysisReportLink}?paperId=${item.id}`}>
-                    <Button type="primary" style={{ marginTop: "7px", width: '100%' }}>Analysis Report</Button>
+                    <Button type="primary" style={{ marginTop: "7px", width: '100%' }}>Paper Analysis</Button>
                 </Link>
             </div>
         </Card>

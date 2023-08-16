@@ -259,14 +259,14 @@
     },
 
     "progressReports": {
-        "progressReports": "Progress Analysis",
+        "progressReports": "Student Analysis",
         "filter": {
             "submit": "Generate Report"
         },
         "all": "All"
     },
     "analysisReports": {
-        "analysisReports": "Analysis Report",
+        "analysisReports": "Paper Analysis",
         "filter": {
             "submit": "Generate Overrall Analysis Report"
         },
