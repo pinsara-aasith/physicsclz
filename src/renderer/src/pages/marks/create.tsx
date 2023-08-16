@@ -34,7 +34,7 @@ export function calculateTotalMarks(mcqCount: number, structuredMarks: number, e
     let fullPaperMark = totalMarksForMCQ + totalMarksForEssay + totalMarksForStructuredEssay
     let marksForPercent = (totalMarks / fullPaperMark) * 100
 
-    return marksForPercent;
+    return Number(Number(marksForPercent).toFixed(2));
 }
 
 export const MarkCreate: React.FC<IResourceComponentsProps & { paperId?: number }> = (props) => {
