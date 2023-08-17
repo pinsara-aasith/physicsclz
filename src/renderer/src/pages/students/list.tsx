@@ -119,7 +119,6 @@ export const StudentList: React.FC<IResourceComponentsProps> = () => {
                     mutateDelete({
                         resource: "students",
                         id,
-                        mutationMode: "undoable",
                         successNotification: { message: "Student was successfully deleted", type: "success" }
                     });
                 }}
