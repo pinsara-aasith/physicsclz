@@ -11,9 +11,14 @@ const platform = require("os").platform()
 const app = express();
 const PORT = 5173;
 
+const log = '';
 
 app.get('/test', (req, res) => {
   res.send('HTTP server working!');
+});
+
+app.get('/strapi-logs', (req, res) => {
+  res.send(log);
 });
 
 let process = null;
@@ -27,9 +32,9 @@ app.get('*', function (request, response) {
 });
 
 if (/^win/.test(platform)) {
-  process = spawn('.\\node_modules\\.bin\\strapi', ['start'], { cwd: '.\\physicsclz-backend', shell: true })
+  process = spawn('.\\node_modules\\.bin\\strapi', ['start'], { cwd: '.\\physicsclz-backend', shell: false })
 } else {
-  process = spawn('./node_modules/.bin/strapi', ['start'], { cwd: './physicsclz-backend', shell: true })
+  process = spawn('./node_modules/.bin/strapi', ['start'], { cwd: './physicsclz-backend', shell: false })
 }
 
 process.stdout.on('data', (output) => {
@@ -37,14 +42,17 @@ process.stdout.on('data', (output) => {
 
   }
   console.log(`${output}`);
+  log += `${output}\n`;
 });
 
 process.on('error', (error) => {
   console.error(`Error: ${error.message}`);
+  log += `Error: ${error.message}\n`;
 });
 
 process.on('close', (code) => {
   console.log(`Strapi process exited with code ${code}`);
+  log += `Strapi process exited with code ${code}\n`;
 });
 
 app.listen(PORT, () => console.log(`HTTP server started on port: ${PORT}`));
