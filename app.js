@@ -11,7 +11,7 @@ const platform = require("os").platform()
 const app = express();
 const PORT = 5173;
 
-const log = '';
+let log = '';
 
 app.get('/test', (req, res) => {
   res.send('HTTP server working!');
