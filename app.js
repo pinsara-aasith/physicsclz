@@ -21,7 +21,6 @@ app.get('/strapi-logs', (req, res) => {
   res.send(log);
 });
 
-let process = null;
 
 app.use('/assets', express.static(path.join(__dirname, './out/renderer/assets')));
 app.use('/images', express.static(path.join(__dirname, './out/renderer/images')));
@@ -31,11 +30,10 @@ app.get('*', function (request, response) {
   response.sendFile(path.resolve(__dirname, './out/renderer/index.html'));
 });
 
-if (/^win/.test(platform)) {
-  process = spawn('.\\node_modules\\.bin\\strapi', ['start'], { cwd: '.\\physicsclz-backend', shell: false })
-} else {
-  process = spawn('./node_modules/.bin/strapi', ['start'], { cwd: './physicsclz-backend', shell: false })
-}
+let backendPath = path.join(__dirname, './physicsclz-backend');
+let starpiPath = path.join(backendPath, '/node_modules/.bin/strapi');
+
+const process = spawn(starpiPath, ['start'], { cwd: './physicsclz-backend', shell: false })
 
 process.stdout.on('data', (output) => {
   if(output.includes('Welcome back!')) {
