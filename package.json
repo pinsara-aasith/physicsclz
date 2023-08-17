@@ -78,5 +78,6 @@
     "react-dom": "^18.2.0",
     "typescript": "^5.1.6",
     "vite": "^4.4.2"
-  }
+  },
+  "icon": "icon.ico"
 }
