@@ -13,7 +13,7 @@ const PORT = 5173;
 /**
  * `$ strapi start`
  */
-const process1 = fork(path.resolve(__dirname, './strapi.js'), [], { shell: false, stdio: 'inherit' })
+// const process1 = fork(path.resolve(__dirname, './strapi.js'), [], { shell: false, stdio: 'inherit' })
 const process2 = fork(path.resolve(__dirname, './server.js'), [], { shell: false, stdio: 'inherit' })
 
 
