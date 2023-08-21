@@ -80,6 +80,7 @@ export const PaperList: React.FC<IResourceComponentsProps> = () => {
     const {
         drawerProps: editDrawerProps,
         formProps: editFormProps,
+        close: closeDrawer,
         saveButtonProps: editSaveButtonProps,
         show: editShow,
         id: editId,
@@ -169,6 +170,7 @@ export const PaperList: React.FC<IResourceComponentsProps> = () => {
                 formProps={editFormProps}
                 saveButtonProps={editSaveButtonProps}
                 editId={editId}
+                closeDrawer={closeDrawer}
             />
         </div>
     );

@@ -1,64 +1,26 @@
-
 "use strict";
+
+const fs = require('fs');
 const electron = require("electron");
 const path = require("path");
 const utils = require("@electron-toolkit/utils");
 const icon = path.join(__dirname, "./resources/icon.png");
-const express = require('express');
-const { spawn } = require("child_process");
+const { spawn, fork } = require("child_process");
 const platform = require("os").platform()
-
-const app = express();
 const PORT = 5173;
 
-let log = '';
 
-app.get('/test', (req, res) => {
-  res.send('HTTP server working!');
-});
+/**
+ * `$ strapi start`
+ */
+const process1 = fork(path.resolve(__dirname, './strapi.js'), [], { shell: false, stdio: 'inherit' })
+const process2 = fork(path.resolve(__dirname, './server.js'), [], { shell: false, stdio: 'inherit' })
 
-app.get('/strapi-logs', (req, res) => {
-  res.send(log);
-});
-
-
-app.use('/assets', express.static(path.join(__dirname, './out/renderer/assets')));
-app.use('/images', express.static(path.join(__dirname, './out/renderer/images')));
-app.use('/locales', express.static(path.join(__dirname, './out/renderer/locales')));
-
-app.get('*', function (request, response) {
-  response.sendFile(path.resolve(__dirname, './out/renderer/index.html'));
-});
-
-let backendPath = path.join(__dirname, './physicsclz-backend');
-let starpiPath = path.join(backendPath, '/node_modules/.bin/strapi');
-
-const process = spawn(starpiPath, ['start'], { cwd: './physicsclz-backend', shell: false })
-
-process.stdout.on('data', (output) => {
-  if(output.includes('Welcome back!')) {
-
-  }
-  console.log(`${output}`);
-  log += `${output}\n`;
-});
-
-process.on('error', (error) => {
-  console.error(`Error: ${error.message}`);
-  log += `Error: ${error.message}\n`;
-});
-
-process.on('close', (code) => {
-  console.log(`Strapi process exited with code ${code}`);
-  log += `Strapi process exited with code ${code}\n`;
-});
-
-app.listen(PORT, () => console.log(`HTTP server started on port: ${PORT}`));
 
 function createWindow() {
   const mainWindow = new electron.BrowserWindow({
-    width: 1100,
-    height: 790,
+    width: 1300,
+    height: 800,
     show: false,
     autoHideMenuBar: true,
     ...process.platform === "linux" ? { icon } : {},
@@ -91,5 +53,6 @@ electron.app.whenReady().then(() => {
 });
 electron.app.on("window-all-closed", () => {
   electron.app.quit();
-  process.kill();
+  process1.kill();
+  process2.kill();
 });

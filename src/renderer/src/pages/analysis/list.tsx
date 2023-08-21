@@ -235,7 +235,7 @@ const Filter: React.FC<{ formProps: FormProps }> = (props) => {
                     </Form.Item>
                 </Col>
 
-                <Col xs={24} md={3} xl={3}>
+                <Col xs={24} md={6} xl={4}>
                     <Form.Item>
                         <Button
                             style={{ width: "100%" }}
@@ -349,8 +349,8 @@ const ResponsiveProgressChart: React.FC<ResponsiveProgressChartProps> = (props) 
 
             return {
                 'MCQ': mcqPercentage,
-                'Structured Essay': essayPercentage,
-                'Essay': structuredEssayPercentage,
+                'Structured Essay': structuredEssayPercentage,
+                'Essay': essayPercentage,
                 'Total Percentage': totalPercentage,
                 paper: d?.name,
                 'absent': false,

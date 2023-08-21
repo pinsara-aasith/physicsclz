@@ -3,8 +3,12 @@ import {
     useTranslate,
     CrudFilters,
     useOne,
+    useCustom,
+    useCustomMutation,
+    useList,
+    useDeleteMany,
 } from "@refinedev/core";
-
+import { ExclamationCircleFilled } from '@ant-design/icons';
 import {
     Create,
     useForm,
@@ -12,7 +16,7 @@ import {
 } from "@refinedev/antd";
 
 import {
-    Form, Select, Row, Col, InputNumber, Image
+    Form, Select, Row, Col, InputNumber, Image, Modal
 } from "antd";
 
 import { IMark, IPaper, IStudent } from "../../interfaces";
@@ -40,7 +44,7 @@ export function calculateTotalMarks(mcqCount: number, structuredMarks: number, e
 export const MarkCreate: React.FC<IResourceComponentsProps & { paperId?: number }> = (props) => {
     const t = useTranslate();
     const [selectedPaperId, setSelectedPaperId] = useState<any>(props.paperId);
-
+    const [_selectedStudent, setSelectedStudent] = useState<any>();
 
     let { selectProps: selectStudentNameProps } = useSelect<IStudent>({
         resource: "students",
@@ -125,11 +129,66 @@ export const MarkCreate: React.FC<IResourceComponentsProps & { paperId?: number 
             const tempPaper = form.getFieldValue("paper");
             form.resetFields();
             form.setFieldValue("paper", tempPaper);
-
             setTimeout(() => barcodeSelectRef.current?.focus(), 900)
         }
     });
 
+    const { data: marksForSameSelectedStudent } = useList({
+        resource: 'marks',
+        filters: [
+            {
+                field: "student.id",
+                operator: "eq",
+                value: form.getFieldValue('student')
+            },
+            {
+                field: "paper.id",
+                operator: "eq",
+                value: form.getFieldValue('paper')
+            },
+        ],
+        pagination: {
+            mode: 'off'
+        }
+    });
+
+    const { mutate } = useDeleteMany();
+
+    saveButtonProps.onClick = () => {
+        if (!marksForSameSelectedStudent?.data?.length) {
+            form.submit()
+            return;
+        }
+
+        Modal.confirm({
+            title: 'Warning!',
+            icon: <ExclamationCircleFilled />,
+            content: 'Marks have been already entered for selected student. Do you want to delete the existing marks and reenter new marks?',
+            onOk() {
+                return new Promise((resolve, reject) => {
+                    mutate({
+                        ids: marksForSameSelectedStudent?.data.map(d => d?.id).filter(d => !!d) as any,
+                        resource: 'marks',
+                            successNotification: {
+                                message: 'Existing marks were deleted successfully',
+                                type: 'success'
+                            }
+                    }, {
+                        onError: (error, _variables, _context) => {
+                            reject(error)
+                        },
+                        onSuccess: (data, _variables, _context) => {
+                            resolve(data)
+                        },
+                    
+                    })
+                }).then((_v) => {
+                    form.submit()
+                })
+            },
+            onCancel() { },
+        })
+    }
 
     const mcqInputRef = useRef<HTMLInputElement>(null);
     const structuredEssayInputRef = useRef<HTMLInputElement>(null);
@@ -155,6 +214,7 @@ export const MarkCreate: React.FC<IResourceComponentsProps & { paperId?: number 
     }, [mcqCount, structuredMarks, essayMarks])
 
     useEffect(() => {
+
         form.setFieldValue('mcq', null);
         form.setFieldValue('structuredEssay', null);
         form.setFieldValue('essay', null);
@@ -165,12 +225,16 @@ export const MarkCreate: React.FC<IResourceComponentsProps & { paperId?: number 
     }, [selectedPaperId])
 
     const evtHandlerFocusNextInput = (nextInput?: HTMLInputElement | null): React.KeyboardEventHandler<HTMLInputElement> => ((event) => {
+       console.log("came here")
+       
         if (!nextInput) return;
-
+        console.log("came here q")
+       
         if (event.key.toLowerCase() === "enter") {
             nextInput?.focus()
-            event.preventDefault()
         }
+        console.log("came here3")
+       
     })
 
     return (
@@ -212,6 +276,7 @@ export const MarkCreate: React.FC<IResourceComponentsProps & { paperId?: number 
                                         ref={barcodeSelectRef}
                                         allowClear
                                         {...selectStudentBarcodeNoProps}
+                                        onChange={(val) => setSelectedStudent(val)}
                                     />
                                 </Form.Item>
                             </Col>
@@ -220,6 +285,7 @@ export const MarkCreate: React.FC<IResourceComponentsProps & { paperId?: number 
                                     <Select
                                         allowClear
                                         {...selectStudentNameProps}
+                                        onChange={(val) => setSelectedStudent(val)}
                                     />
                                 </Form.Item>
                             </Col>

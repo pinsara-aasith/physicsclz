@@ -22,6 +22,7 @@ type EditPaperProps = {
     formProps: FormProps;
     saveButtonProps: ButtonProps;
     editId?: BaseKey;
+    closeDrawer: () => void;
 };
 
 export const EditPaper: React.FC<EditPaperProps> = ({
@@ -29,6 +30,7 @@ export const EditPaper: React.FC<EditPaperProps> = ({
     formProps,
     saveButtonProps,
     editId,
+    closeDrawer
 }) => {
     const t = useTranslate();
     const breakpoint = Grid.useBreakpoint();
@@ -52,7 +54,12 @@ export const EditPaper: React.FC<EditPaperProps> = ({
             zIndex={1001}
         >
             <Edit
-            
+                deleteButtonProps={{onSuccess(_value) {
+                    closeDrawer()
+                }, successNotification: {
+                    message: "Paper was successfully deleted",
+                    type: "success",
+                }}}
                 saveButtonProps={saveButtonProps}
                 resource="papers"
                 recordItemId={editId}

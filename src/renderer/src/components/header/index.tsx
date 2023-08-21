@@ -80,8 +80,6 @@ export const Header: React.FC = () => {
     const [hideClassSearch, setHideClassSearch] = useState(true)
 
     useEffect(() => {
-        console.log(resources.filter(r => r.name == 'dashboard' || r.name == 'students' || r.name == 'classes'))
-        
         setHideClassSearch(!!resources
             .filter(r => r.name == 'dashboard' || r.name == 'students' || r.name == 'classes')
             .find(r => location.pathname.includes(r.name) || location.pathname == '/'))

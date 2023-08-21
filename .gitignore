@@ -2,3 +2,6 @@ node_modules
 dist
 out
 *.log*
+physicsclz-win32-x64
+src/renderer/src/constants.ts
+physicsclz.exe
