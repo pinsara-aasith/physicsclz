@@ -53,6 +53,6 @@ electron.app.whenReady().then(() => {
 });
 electron.app.on("window-all-closed", () => {
   electron.app.quit();
-  process1.kill();
+  //process1.kill();
   process2.kill();
 });
