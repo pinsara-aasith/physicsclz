@@ -97,7 +97,6 @@ export const ClassSearchProvider: FC<PropsWithChildren> = ({ children }) => {
                         }
                     }}
                     value={selectedClassId as any}
-                    suffixIcon={<ClusterOutlined />}
                     allowClear
                 />
             </Modal>
