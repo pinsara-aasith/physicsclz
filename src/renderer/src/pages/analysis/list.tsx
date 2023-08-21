@@ -374,6 +374,12 @@ const ResponsiveProgressChart: React.FC<ResponsiveProgressChartProps> = (props) 
 
     return (
         <div style={{ width: '100%', height: '350px' }}>
+            <Radio.Group style={{ paddingLeft: '20px' }} value={paperType} onChange={(e) => setPaperType(e.target.value)}>
+                <Radio.Button value="all">All</Radio.Button>
+                <Radio.Button value="inClassPaper">In Class Papers</Radio.Button>
+                <Radio.Button value="fullPaper">Full Papers</Radio.Button>
+            </Radio.Group>
+
             <Radio.Group value={radioButtonValue} onChange={(e) => setRadioButtonValue(e.target.value)}>
                 <Radio.Button value="all">All</Radio.Button>
                 <Radio.Button value="mcq">MCQ</Radio.Button>
@@ -382,11 +388,6 @@ const ResponsiveProgressChart: React.FC<ResponsiveProgressChartProps> = (props) 
                 <Radio.Button value="total">Total</Radio.Button>
             </Radio.Group>
 
-            <Radio.Group style={{ paddingLeft: '20px' }} value={paperType} onChange={(e) => setPaperType(e.target.value)}>
-                <Radio.Button value="all">All</Radio.Button>
-                <Radio.Button value="inClassPaper">In Class Papers</Radio.Button>
-                <Radio.Button value="fullPaper">Full Papers</Radio.Button>
-            </Radio.Group>
             <ResponsiveBar
                 valueFormat={(v) => `${v}%`}
                 labelFormat={(v) => `${v}%`}

@@ -4,7 +4,7 @@ import {
     useResource,
     useSetLocale,
 } from "@refinedev/core";
-import { ClusterOutlined, DownOutlined } from "@ant-design/icons";
+import { DownOutlined } from "@ant-design/icons";
 
 import {
     Dropdown,
@@ -115,7 +115,6 @@ export const Header: React.FC = () => {
                         placeholder="Select a class to filter data"
                         value={selectedClassId as any}
                         onChange={(val) => setSelectedClassId(Number(val) || undefined)}
-                        suffixIcon={<ClusterOutlined />}
                         allowClear
                     />
                 </Col>
